@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import * as Yup from "yup";
 import { type NewNoteContent, createNote } from "../../services/noteService.ts";
 import { type NoteTag } from "../../types/note";
+import { type Note } from "../../types/note";
 
 
 
