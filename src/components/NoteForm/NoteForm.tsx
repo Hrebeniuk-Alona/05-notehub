@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 import { type NewNoteContent, createNote } from "../../services/noteService.ts";
-import { type NoteTag } from "../../types/note";
+import type {  NoteTag } from "../../types/note";
 import { type Note } from "../../types/note";
 
 
@@ -68,25 +68,26 @@ export default function NoteForm({ onCancel, onModalClose }: NoteFormProps) {
 
         
  {()=>(
-                <Form className={css.form}>
-  <div className={css.formGroup}>
-    <label htmlFor="title">Title</label>
-    <Field id="title" type="text" name="title" className={css.input} />
-    <FormikErrorMessage
+          <Form className={css.form}>
+            <div className={css.formGroup}>
+              <label htmlFor="title">Title</label>
+              <Field id="title" type="text" name="title" className={css.input} />
+              <FormikErrorMessage
               name="title"
               component="span"
               className={css.error}
-            />
-  </div>
-
-  <div className={css.formGroup}>
-    <label htmlFor="content">Content</label>
-    <Field
-      id="content"
-      name="content"
-      rows="8"
-      className={css.textarea}
-    />
+              />
+            </div>
+            
+            <div className={css.formGroup}>
+              <label htmlFor="content">Content</label>
+              <Field
+                as="textarea"
+                id="content"
+                name="content"
+                rows="8"
+                className={css.textarea}
+              />
     <FormikErrorMessage
          name="content"
         component="span"

@@ -35,13 +35,13 @@ function App() {
     enabled: true,
     placeholderData:  keepPreviousData
 })
-  
 
+ 
   const notes: Note[] = data?.notes || [];
   const totalPage:number = data?.totalPages ?? 0;
 
 
-  const notifyNoMoviesFound = () =>
+  const notifyNoNotesFound  = () =>
     toast.error("No movies found for your request.", {
       style: { background: "rgba(125, 183, 255, 0.8)" },
     });
@@ -49,7 +49,7 @@ function App() {
   
   useEffect(() => {
     if (data?.notes.length === 0) {
-      notifyNoMoviesFound()
+      notifyNoNotesFound()
         return;
     }
   }, [data]);
@@ -77,6 +77,8 @@ function App() {
     queryClient.invalidateQueries({ queryKey: ["notes"] });
   };
 
+
+
   return (
     <>
       <div className={css.app}>
@@ -84,16 +86,14 @@ function App() {
 	 
           <SearchBox onSubmit={handleSearch} />
           
-
           {notes.length > 0 && (<Pagination onClickPage={handlePageClick} pageCount={totalPage}
           currentPage={currentPage} />)}
           
           <button className={css.button} onClick={openCreateNoteModal}>Create note +</button>
-          
-
-          
      
         </header>
+
+        
         {(isLoading || isFetching) && <Loader />}
     
         {errorMessage && (
