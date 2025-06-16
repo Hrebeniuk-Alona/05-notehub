@@ -16,11 +16,6 @@ export interface NewNoteContent {
     totalPages: number;
     totalResults: number;
   }
-  
-  export interface DeletedNoteInfo {
-    message: string;
-    deletedNoteId: number;
-  }
 
 
 const BASE_URL = "https://notehub-public.goit.study/api";
@@ -53,10 +48,6 @@ export const fetchNotes = async (
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("Error fetching notes:", error.message);
-      if (error.response) {
-        console.error("Response data:", error.response.data);
-        console.error("Response status:", error.response.status);
-      }
     } else {
       console.error("Unexpected error fetching notes:", error);
     }
@@ -71,10 +62,6 @@ export const createNote = async (content: NewNoteContent): Promise<Note> => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("Error creating note:", error.message);
-      if (error.response) {
-        console.error("Response data:", error.response.data);
-        console.error("Response status:", error.response.status);
-      }
     } else {
       console.error("Unexpected error creating note:", error);
     }
@@ -82,18 +69,14 @@ export const createNote = async (content: NewNoteContent): Promise<Note> => {
   }
 };
 
-export const deleteNote = async (id: number): Promise<DeletedNoteInfo> => {
+export const deleteNote = async (id: number): Promise<Note> => {
   try {
-    const response = await axiosConfig.delete<DeletedNoteInfo>(`/notes/${id}`);
+    const response = await axiosConfig.delete<Note>(`/notes/${id}`);
 
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error(`Error deleting note with ID ${id}:`, error.message);
-      if (error.response) {
-        console.error("Response data:", error.response.data);
-        console.error("Response status:", error.response.status);
-      }
     } else {
       console.error("Unexpected error deleting note:", error);
     }

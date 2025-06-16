@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import css from "../App/App.module.css"
 
 import { type Note } from '../../types/note'
-import SearchBox from "../SearchBox/SearchBar"
+import SearchBox from "../SearchBox/SearchBox.tsx"
 import { keepPreviousData, useQuery, useQueryClient  } from "@tanstack/react-query"
 import { fetchNotes } from "../../services/noteService"
 import NoteList from "../NoteList/NoteList"
